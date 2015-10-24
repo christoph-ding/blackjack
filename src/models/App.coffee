@@ -6,3 +6,5 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     # listenTo win/lose ... restart if lose
+    @listenTo @.get('playerHand'), "lose", => console.log "you lose"
+    @listenTo @.get('playerHand'), "win", => console.log "you win"
