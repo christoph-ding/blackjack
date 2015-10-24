@@ -6,5 +6,17 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     # listenTo win/lose ... restart if lose
-    @listenTo @.get('playerHand'), "lose", => console.log "you lose"
-    @listenTo @.get('playerHand'), "win", => console.log "you win"
+    @listenTo @.get('playerHand'), "lose", => alert "You bust."
+    @listenTo @.get('dealerHand'), "compareScores", => @compareScores()
+    @listenTo @.get('dealerHand'), "win", => alert "you win!"
+
+  compareScores: ->
+    @.get('dealerHand').models[0].flip()
+    playerScore = @.get('playerHand').scores()[0]
+    dealerScore = @.get('dealerHand').dealerScore()[0]
+    if playerScore > dealerScore 
+      alert "you win!"        
+    else if playerScore == dealerScore 
+      alert "Push. Play again!"               
+    else if playerScore < dealerScore 
+      alert "you lose...Play again!"                        
