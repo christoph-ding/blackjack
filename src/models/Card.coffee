@@ -10,7 +10,7 @@ class window.Card extends Backbone.Model
         when 11 then 'Jack'
         when 12 then 'Queen'
         else params.rank
-
+        # Note: Face cards should be worth 10, Ace should be 1 or 11. change if incorrect
   flip: ->
     @set 'revealed', !@get 'revealed'
     @
