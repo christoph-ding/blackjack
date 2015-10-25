@@ -13,3 +13,9 @@ describe 'deck', ->
       assert.strictEqual deck.length, 50
       assert.strictEqual deck.last(), hand.hit()
       assert.strictEqual deck.length, 49
+
+  describe "dealing", ->
+    it "should make a two card player hand upon starting", ->
+      collection = new Deck()
+      playerHand = collection.dealPlayer()
+      assert.strictEqual playerHand.length, 2

@@ -2,6 +2,7 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
+    console.log "Hi I am a new hand: " + @isDealer
     # when my score changes, I will check my score for logic such as winning, losing, etc
     # @.listenTo @, 'change: scores', @checkScore
     # we can HEAR THINGS, and we can invoke the callback function
@@ -10,9 +11,9 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
-    @last()
     if not @isDealer
       @checkScore()
+    @last()
 
   stand: ->
 
@@ -55,7 +56,6 @@ class window.Hand extends Backbone.Collection
 
     # situation for dealer
     if @isDealer      
-      console.log @.models
       if @dealerScore()[0] > 21   
         @trigger "win", @
       else
